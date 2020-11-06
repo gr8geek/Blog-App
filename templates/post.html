@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+
+{%block head%}
+<title>Welcome to post Bloggg</title>
+{%endblock%}
+
+{%block body%}
+<h1>Blogs and stuff</h1>
+    {%for post in posts%}
+        <h2><i>{{ post.title }}</i></h2>
+        <br/>
+        {%if post.author%}
+        <p><i>by {{post.author}}</i></p>
+
+        {%else%}
+        <p><i>by Anon</i></p>
+
+        {%endif%}
+        <br/>
+        <p>{{post.content}}</p>
+        <a href="/posts/delete/{{post.id}}">Delete</a>
+    {%endfor%}
+    <br>
+    <hr>
+    <form action = "/posts" method="POST">
+        Title: <input type = 'text' name = 'title' id = 'title'>
+        <br>
+        Post:
+        <input type = 'text' name = "content" id = "content">
+        <br>
+        Author:
+        <input type = 'text' name = "author" id = "author">
+        <br>
+        <button type = "submit" value="Post" > Submit the Post</button>
+
+    </form>
+    <hr>
+{%endblock%}
